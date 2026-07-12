@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>InternshipRO — Gaseste stagiatora ta</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a class="logo" href="#" onclick="resetFilters(); return false;">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <circle cx="18" cy="18" r="18" fill="#0A66C2"/>
+          <rect x="10" y="13" width="16" height="12" rx="2" fill="white" opacity="0.95"/>
+          <rect x="14" y="10" width="8" height="5" rx="1.5" fill="white" opacity="0.95"/>
+          <rect x="16" y="19" width="4" height="1.5" rx="0.75" fill="#0A66C2"/>
+        </svg>
+        <span>InternshipRO</span>
+      </a>
+      <div class="search-bar">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input id="searchInput" type="text" placeholder="Cauta internship, companie, skill..." />
+      </div>
+      <div class="nav-right">
+        <span class="badge-count" id="totalCount">0 anunturi</span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-layout">
+
+    <!-- SIDEBAR FILTRE -->
+    <aside class="sidebar">
+      <div class="sidebar-card">
+        <h3>Filtreaza</h3>
+
+        <div class="filter-group">
+          <label>Domeniu</label>
+          <select id="filterDomain" onchange="applyFilters()">
+            <option value="">Toate domeniile</option>
+            <option value="IT">IT & Software</option>
+            <option value="Finance">Finante & Banca</option>
+            <option value="Marketing">Marketing</option>
+            <option value="HR">Resurse Umane</option>
+            <option value="Data">Data & Analytics</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label>Sursa</label>
+          <div class="checkbox-group">
+            <label><input type="checkbox" value="Hipo" checked onchange="applyFilters()"> Hipo.ro</label>
+            <label><input type="checkbox" value="eJobs" checked onchange="applyFilters()"> eJobs.ro</label>
+            <label><input type="checkbox" value="Bestjobs" checked onchange="applyFilters()"> Bestjobs.eu</label>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <label>Locatie</label>
+          <select id="filterLocation" onchange="applyFilters()">
+            <option value="">Toate orasele</option>
+            <option value="Bucuresti">Bucuresti</option>
+            <option value="Cluj">Cluj-Napoca</option>
+            <option value="Timisoara">Timisoara</option>
+            <option value="Iasi">Iasi</option>
+            <option value="Remote">Remote</option>
+          </select>
+        </div>
+
+        <button class="btn-reset" onclick="resetFilters()">Reseteaza filtrele</button>
+      </div>
+
+      <div class="sidebar-card stat-card">
+        <h3>Statistici</h3>
+        <div class="stat-row"><span>Total anunturi</span><strong id="statTotal">—</strong></div>
+        <div class="stat-row"><span>Adaugate azi</span><strong id="statToday">—</strong></div>
+        <div class="stat-row"><span>Companii</span><strong id="statCompanies">—</strong></div>
+        <div class="stat-row update-row">
+          <span id="lastUpdate">Ultima actualizare: —</span>
+        </div>
+        <button class="btn-refresh" onclick="triggerScrape()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+            <polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+          </svg>
+          Actualizeaza
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+      <div id="searchBanner" class="search-banner" style="display:none">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        Rezultate pentru: <strong id="searchBannerText"></strong>
+        <button onclick="document.getElementById('searchInput').value='';applyFilters()">✕</button>
+      </div>
+
+      <div class="results-header">
+        <span id="resultsLabel">Se incarca...</span>
+        <div class="sort-row">
+          <label>Sorteaza:</label>
+          <select id="sortBy" onchange="applyFilters()">
+            <option value="date">Cele mai recente</option>
+            <option value="company">Companie (A-Z)</option>
+            <option value="title">Titlu (A-Z)</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="jobsList"></div>
+      <div id="pagination"></div>
+      <div id="emptyState" class="empty-state" style="display:none">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1.5" width="48" height="48">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <p>Niciun anunt gasit pentru filtrele selectate.</p>
+        <button class="btn-reset" onclick="resetFilters()">Reseteaza filtrele</button>
+      </div>
+    </main>
+
+  </div>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
