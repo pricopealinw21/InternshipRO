@@ -7,7 +7,7 @@ body {
   font-size: 14px;
 }
 
-/* ── NAVBAR ────────────────────────────────────────── */
+/* NAVBAR */
 .navbar {
   background: #fff;
   border-bottom: 1px solid #e0e0e0;
@@ -66,7 +66,7 @@ body {
   white-space: nowrap;
 }
 
-/* ── LAYOUT ────────────────────────────────────────── */
+/* LAYOUT */
 .page-layout {
   max-width: 1200px;
   margin: 20px auto;
@@ -77,7 +77,7 @@ body {
   align-items: start;
 }
 
-/* ── SIDEBAR ───────────────────────────────────────── */
+/* SIDEBAR */
 .sidebar { display: flex; flex-direction: column; gap: 12px; }
 .sidebar-card {
   background: #fff;
@@ -169,7 +169,7 @@ body {
 }
 .btn-refresh:hover { background: #004182; }
 
-/* ── MAIN ──────────────────────────────────────────── */
+/* MAIN */
 .main-content { min-width: 0; }
 .results-header {
   display: flex;
@@ -189,7 +189,7 @@ body {
   cursor: pointer;
 }
 
-/* ── JOB CARD ──────────────────────────────────────── */
+/* JOB CARD */
 .job-card {
   background: #fff;
   border: 1px solid #e0e0e0;
@@ -294,7 +294,7 @@ body {
 }
 .btn-save:hover { background: #EEF3F8; }
 
-/* ── SEARCH BANNER ─────────────────────────────────── */
+/* SEARCH BANNER */
 .search-banner {
   display: flex;
   align-items: center;
@@ -320,7 +320,7 @@ body {
 }
 .search-banner button:hover { color: #000; }
 
-/* ── HIGHLIGHT ──────────────────────────────────────── */
+/* HIGHLIGHT */
 mark {
   background: #FFF3B0;
   color: #000;
@@ -328,7 +328,7 @@ mark {
   padding: 0 1px;
 }
 
-/* ── LOADING ───────────────────────────────────────── */
+/* LOADING */
 .skeleton {
   background: #fff;
   border: 1px solid #e0e0e0;
@@ -345,7 +345,7 @@ mark {
 }
 @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
 
-/* ── PAGINARE ──────────────────────────────────────── */
+/* PAGINARE */
 #pagination {
   display: flex;
   justify-content: space-between;
@@ -376,7 +376,7 @@ mark {
 
 .btn-save.saved { background: #EEF3F8; color: #0A66C2; border-color: #0A66C2; }
 
-/* ── EMPTY STATE ───────────────────────────────────── */
+/* EMPTY STATE */
 .empty-state {
   text-align: center;
   padding: 60px 20px;

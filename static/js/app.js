@@ -24,7 +24,7 @@ function highlight(text, term) {
   return text.replace(re, '<mark>$1</mark>');
 }
 
-// ── Salvare jobs ────────────────────────────────────────────────────────────
+// Salvare jobs
 function getSaved() { return JSON.parse(localStorage.getItem('savedJobs') || '[]'); }
 function toggleSave(url, btn) {
   let saved = getSaved();
@@ -41,7 +41,7 @@ function toggleSave(url, btn) {
 }
 function isSaved(url) { return getSaved().includes(url); }
 
-// ── Skeleton ────────────────────────────────────────────────────────────────
+// Skeleton
 function renderSkeletons(n = 5) {
   document.getElementById('jobsList').innerHTML = Array(n).fill(`
     <div class="skeleton">
@@ -56,7 +56,7 @@ function renderSkeletons(n = 5) {
     </div>`).join('');
 }
 
-// ── Render jobs ──────────────────────────────────────────────────────────────
+// Render jobs
 function renderJobs(jobs, searchTerm = '') {
   const list  = document.getElementById('jobsList');
   const empty = document.getElementById('emptyState');
@@ -131,7 +131,7 @@ function renderJobs(jobs, searchTerm = '') {
   renderPagination(jobs.length, totalPages, searchTerm);
 }
 
-// ── Paginare ─────────────────────────────────────────────────────────────────
+// Paginare
 function renderPagination(total, totalPages, searchTerm) {
   const el = document.getElementById('pagination');
   if (totalPages <= 1) { el.innerHTML = ''; return; }
@@ -169,7 +169,7 @@ function goPage(page, searchTerm) {
   applyFilters();
 }
 
-// ── Filtre ───────────────────────────────────────────────────────────────────
+// Filtre
 function applyFilters() {
   const search   = document.getElementById('searchInput').value.trim();
   const searchLo = search.toLowerCase();
@@ -216,7 +216,7 @@ function resetFilters() {
   applyFilters();
 }
 
-// ── Stats ────────────────────────────────────────────────────────────────────
+// Stats
 async function loadStats() {
   try {
     const res  = await fetch('/api/stats');
@@ -228,7 +228,7 @@ async function loadStats() {
   } catch (_) {}
 }
 
-// ── Load jobs ────────────────────────────────────────────────────────────────
+// Load jobs
 async function loadJobs() {
   renderSkeletons();
   document.getElementById('resultsLabel').textContent = 'Se incarca anunturile...';
@@ -245,7 +245,7 @@ async function loadJobs() {
   }
 }
 
-// ── Actualizeaza manual ───────────────────────────────────────────────────────
+// Actualizeaza manual
 async function triggerScrape() {
   document.getElementById('statTotal').textContent = '...';
   await fetch('/api/scrape', { method: 'POST' });
