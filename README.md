@@ -1,63 +1,52 @@
 # InternshipRO
 
-Agregator de internshipuri din România care colectează automat anunțuri reale de pe **Hipo.ro**, **eJobs.ro** și **Bestjobs.eu**.
+Aplicatie web care strange intr-un singur loc internship-urile de pe **Hipo.ro**, **eJobs.ro** si **Bestjobs.eu**.
 
-![InternshipRO Screenshot](screenshot.png)
+Am facut-o pentru ca, atunci cand cautam internship, trebuia sa intru pe 3 site-uri diferite si sa caut acelasi lucru de fiecare data.
 
 ## Ce face
 
-- Scrapeaza automat 150+ internshipuri în timp real din 3 surse
-- Interfață inspirată din LinkedIn cu filtrare, căutare și paginare
-- Salvare joburi favorite în browser (localStorage)
-- Re-scraping automat la fiecare 6 ore în background
-- Highlight termeni căutați în rezultate
+- ia anunturile de internship/stagiu de pe cele 3 site-uri (scraping cu Playwright)
+- le salveaza intr-o baza de date SQLite, fara duplicate
+- cautare, filtre si paginare
+- poti salva anunturile care iti plac (raman in browser, cu localStorage)
+- reface scraping-ul automat la fiecare 6 ore
 
-## Tech Stack
+## Tehnologii
 
-| Layer | Tehnologie |
-|-------|-----------|
-| Backend | Python, Flask |
-| Scraping | Playwright (headless Chromium), BeautifulSoup4 |
-| Baza de date | SQLite |
-| Frontend | HTML, CSS, JavaScript (vanilla) |
+- Python + Flask (backend)
+- Playwright + BeautifulSoup (scraping)
+- SQLite
+- HTML, CSS si JavaScript simplu (fara framework)
 
-## Instalare
+## Cum il rulezi
 
 ```bash
-# 1. Cloneaza repo-ul
 git clone https://github.com/pricopealinw21/InternshipRO.git
 cd InternshipRO
 
-# 2. Instaleaza dependentele
 pip install -r requirements.txt
 playwright install chromium
 
-# 3. Porneste aplicatia
 py app.py
 ```
 
-Deschide **http://localhost:5000** în browser.
+Apoi deschizi http://localhost:5000. La pornire face primul scraping, dureaza putin pana apar anunturile.
 
-La pornire, aplicația scrapeaza automat toate sursele și afișează joburile în timp real.
-
-## Structura proiectului
+## Structura
 
 ```
-InternshipRO/
-├── app.py                  # Flask server + background scraping
-├── scrapers/
-│   ├── hipo.py             # Scraper Hipo.ro
-│   ├── ejobs.py            # Scraper eJobs.ro
-│   └── bestjobs.py         # Scraper Bestjobs.eu
-├── database/
-│   └── db.py               # SQLite (upsert, query)
-├── templates/
-│   └── index.html          # UI principal
-└── static/
-    ├── css/style.css
-    └── js/app.js           # Filtrare, paginare, salvare joburi
+app.py          - serverul Flask + scraping-ul in background
+scrapers/       - cate un fisier pentru fiecare site (hipo, ejobs, bestjobs)
+database/db.py  - lucrul cu SQLite
+templates/      - pagina HTML
+static/         - CSS si JavaScript
 ```
 
-## Autor
+## Probleme cunoscute
 
-**Alin Pricope** — student Cibernetică, Statistică și Informatică Economică @ ASE București
+- daca un site isi schimba structura HTML, scraper-ul pentru el trebuie actualizat
+
+---
+
+Alin Pricope, student la Cibernetica, Statistica si Informatica Economica, ASE Bucuresti
